@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  webserver:
+    image: python-regex
+    build: .
+    environment:
+      FLAG: "scs2019{d79eeec0fb9117de4749db3ecdba4bfb167fe70c}"
+    ports:
+      - 8081:8080

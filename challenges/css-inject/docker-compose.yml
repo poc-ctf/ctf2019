@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  bot:
+    build:
+      context: "bot/app"
+    container_name: bot
+    depends_on:
+      - web
+      - checker
+    networks:
+      - internal_network
+    volumes:
+      - ./bot/app:/app
+      - ./bot/userdir:/userdir
+      - ./bot/screens:/screens
+  web:
+    image: php:7.2-apache
+    ports:
+      - 8082:80
+    volumes:
+      - ./server/db:/var/www/db
+      - ./server/html:/var/www/html
+      - ./server/model:/var/www/model
+      - ./server/config:/var/www/config
+      - ./server/repositories:/var/www/repositories
+    networks:
+      - internal_network
+  checker:
+    image: nginx
+
+networks:
+  internal_network:

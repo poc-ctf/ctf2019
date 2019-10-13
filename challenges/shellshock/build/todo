@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Content-type: text/html";
+echo ""
+
+/bin/cat << EOM
+<pre>
+EOM
+
+bash --version
+ls -d /flags/flag.*
+
+/bin/cat << EOM
+</pre>
+EOM

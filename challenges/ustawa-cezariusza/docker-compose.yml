@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web:
+    build: web
+    ports:
+     - "80:80"
+     - "443:443"
+    volumes:
+      - ./web/www:/var/www/html
+  curl:
+    build: curl

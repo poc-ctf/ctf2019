@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  web:
+    image: heartbleed
+    build: web
+    ports:
+      - 443:443
+  curl:
+    image: curl
+    build: curl
+    depends_on:
+      - web
+    environment:
+      FLAG: "scs2019{qwesdcfgkjoish82938rhsehf}"

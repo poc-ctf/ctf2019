@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  bot:
+    build:
+      context: "bot/app"
+    depends_on:
+      - web
+      - checker
+    networks:
+      - internal_network
+    volumes:
+      - ./bot/app:/app
+      - ./bot/userdir:/userdir
+      - ./bot/screens:/screens
+  web:
+    build:
+      context: "server/"
+    ports:
+      - 8080:80
+    volumes:
+      - ./server/html:/var/www/html
+      - ./server/config:/var/www/config
+      - ./server/model:/var/www/model
+      - ./server/repositories:/var/www/repositories
+      - ./server/db:/var/www/db
+    networks:
+      - internal_network
+  checker:
+    image: php:7.2-apache
+    volumes:
+      - ./checker/:/var/www/html
+    networks:
+      - internal_network
+
+networks:
+  internal_network:

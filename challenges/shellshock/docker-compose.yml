@@ -1,0 +1,11 @@
+version: "3"
+services:
+  shellshock:
+    build: ./build
+    ports:
+      - 8089:80
+    networks:
+      - shellshock
+
+networks:
+  shellshock:

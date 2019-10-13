@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    ports:
+      - 8087:80
+    environment:
+      FLAG: scs2019{aaedabce34860e28bd5f5ad35ba902db3745d29a}
+    volumes:
+      - ./www/:/var/www/html
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
